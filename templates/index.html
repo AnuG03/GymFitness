@@ -45,23 +45,30 @@
         <ul>
           <li><a href="/" class="active">Home<br></a></li>
           <li><a href="/about">About</a></li>
-          <li><a href="/services">Services</a></li>
+          <li><a href="/service">Services</a></li>
           <li><a href="/gallery">Gallery</a></li>
           <li><a href="/contact">Contact</a></li>
           <li class="dropdown"><a href="#"><span>Memberships</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
             <ul>
-              <li><a href="#">Enroll</a></li>
-              <li><a href="#">Workouts</a></li>
-              <li><a href="#">Tracker</a></li>
-              <li><a href="#">View Profile</a></li>
+              <li><a href="/join">Enroll</a></li>
+              <li><a href="/attendance">Attendance</a></li>
+              <li><a href="/profile">View Profile</a></li>
             </ul>
           </li>
-          <li><a href="/signin">SignIN</a></li>
+
+          {% if not request.user.is_authenticated %}
+          <li><a class="nav-link scrollto" href="/signup">SignIn</a></li>
+          {% else %}
+          <li><a class="nav-link scrollto" href="/logout">Logout</a></li>
+          {% endif %}
+
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
 
-      <a class="btn-getstarted" href="/achivements">Gym Awards</a>
+      {% if request.user.is_authenticated %}
+      <a class="btn-getstarted" href="/">Welcome</a>
+      {% endif %}
 
     </div>
   </header>
@@ -71,7 +78,7 @@
     <!-- Hero Section -->
     <section id="hero" class="hero section dark-background">
 
-      <img src="static/assets/img/hero-bg.jpg" alt="" data-aos="fade-in">
+      <img src="static/assets/img/fit.jpg" alt="" data-aos="fade-in">
 
       <div class="container">
 
@@ -86,31 +93,31 @@
           <div class="col-xl-2 col-md-4" data-aos="fade-up" data-aos-delay="300">
             <div class="icon-box">
               <i class="bi bi-binoculars"></i>
-              <h3><a href="">Biceps| Triceps</a></h3>
+              <h3><a href="/bi_tri">Biceps| Triceps</a></h3>
             </div>
           </div>
           <div class="col-xl-2 col-md-4" data-aos="fade-up" data-aos-delay="400">
             <div class="icon-box">
               <i class="bi bi-bullseye"></i>
-              <h3><a href="">Back</a></h3>
+              <h3><a href="/back">Back</a></h3>
             </div>
           </div>
           <div class="col-xl-2 col-md-4" data-aos="fade-up" data-aos-delay="500">
             <div class="icon-box">
               <i class="bi bi-fullscreen-exit"></i>
-              <h3><a href="">Shoulders</a></h3>
+              <h3><a href="/shoulders">Shoulders</a></h3>
             </div>
           </div>
           <div class="col-xl-2 col-md-4" data-aos="fade-up" data-aos-delay="600">
             <div class="icon-box">
               <i class="bi bi-card-list"></i>
-              <h3><a href="">Chest</a></h3>
+              <h3><a href="/chest">Chest</a></h3>
             </div>
           </div>
           <div class="col-xl-2 col-md-4" data-aos="fade-up" data-aos-delay="700">
             <div class="icon-box">
               <i class="bi bi-gem"></i>
-              <h3><a href="">Legs</a></h3>
+              <h3><a href="/legs">Legs</a></h3>
             </div>
           </div>
         </div>
@@ -126,22 +133,29 @@
 
         <div class="row gy-4">
           <div class="col-lg-6 order-1 order-lg-2">
-            <img src="static/assets/img/about.jpg" class="img-fluid" alt="">
+            <img src="static/assets/img/tip.jpg" class="img-fluid" alt="" width="700" height="700">
           </div>
           <div class="col-lg-6 order-2 order-lg-1 content">
-            <h3>Voluptatem dignissimos provident</h3>
-            <p class="fst-italic">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-              magna aliqua.
-            </p>
+            <h3>Tips to maintain -</h3>
             <ul>
-              <li><i class="bi bi-check2-all"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo consequat.</span></li>
-              <li><i class="bi bi-check2-all"></i> <span>Duis aute irure dolor in reprehenderit in voluptate velit.</span></li>
-              <li><i class="bi bi-check2-all"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</span></li>
+            <li><i class="bi bi-check2-all"></i> <span>Stay Active Daily:</span></li>
+</ul>
+              <p class="fst-italic">Engage in regular physical activity, mixing strength training, cardio, and flexibility exercises to keep your body strong and functional.</p>
+
+              <ul>
+              <li><i class="bi bi-check2-all"></i> <span>Fuel Your Body with Whole Foods:</span></li>
+              </ul>
+            <p class="fst-italic">Eat a balanced diet full of nutrient-dense foods—fruits, vegetables, lean proteins, and healthy fats—to support energy and muscle recovery.</p>
+            <ul>
+            <li><i class="bi bi-check2-all"></i> <span> Prioritize Recovery:</span></li>
             </ul>
-            <p>
-              Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-              velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident
+            <p class="fst-italic">Allow your body time to recover by getting enough sleep and taking rest days to prevent burnout and injury.
+            </p>
+
+            <ul>
+            <li><i class="bi bi-check2-all"></i> <span> Stay Consistent and Set Goals:</span></li>
+            </ul>
+            <p class="fst-italic">Consistency is key! Set achievable fitness goals and track your progress to stay motivated and committed.
             </p>
           </div>
         </div>
@@ -150,100 +164,44 @@
 
     </section><!-- /About Section -->
 
-    <!-- Clients Section -->
-    <section id="clients" class="clients section">
-
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-        <div class="swiper init-swiper">
-          <script type="application/json" class="swiper-config">
-            {
-              "loop": true,
-              "speed": 600,
-              "autoplay": {
-                "delay": 5000
-              },
-              "slidesPerView": "auto",
-              "pagination": {
-                "el": ".swiper-pagination",
-                "type": "bullets",
-                "clickable": true
-              },
-              "breakpoints": {
-                "320": {
-                  "slidesPerView": 2,
-                  "spaceBetween": 40
-                },
-                "480": {
-                  "slidesPerView": 3,
-                  "spaceBetween": 60
-                },
-                "640": {
-                  "slidesPerView": 4,
-                  "spaceBetween": 80
-                },
-                "992": {
-                  "slidesPerView": 6,
-                  "spaceBetween": 120
-                }
-              }
-            }
-          </script>
-          <div class="swiper-wrapper align-items-center">
-            <div class="swiper-slide"><img src="static/assets/img/clients/client-1.png" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="static/assets/img/clients/client-2.png" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="static/assets/img/clients/client-3.png" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="static/assets/img/clients/client-4.png" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="static/assets/img/clients/client-5.png" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="static/assets/img/clients/client-6.png" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="static/assets/img/clients/client-7.png" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="static/assets/img/clients/client-8.png" class="img-fluid" alt=""></div>
-          </div>
-          <div class="swiper-pagination"></div>
-        </div>
-
-      </div>
-
-    </section><!-- /Clients Section -->
-
     <!-- Features Section -->
     <section id="features" class="features section">
 
       <div class="container">
 
         <div class="row gy-4">
-          <div class="features-image col-lg-6" data-aos="fade-up" data-aos-delay="100"><img src="static/assets/img/features-bg.jpg" alt=""></div>
+          <div class="features-image col-lg-6" data-aos="fade-up" data-aos-delay="100"><img src="static/assets/img/weights.jpg" alt=""></div>
           <div class="col-lg-6">
 
             <div class="features-item d-flex ps-0 ps-lg-3 pt-4 pt-lg-0" data-aos="fade-up" data-aos-delay="200">
               <i class="bi bi-archive flex-shrink-0"></i>
               <div>
-                <h4>Est labore ad</h4>
-                <p>Consequuntur sunt aut quasi enim aliquam quae harum pariatur laboris nisi ut aliquip</p>
+                <h4>"Progress, Not Perfection"</h4>
+                <p>Fitness is a journey, not a destination. Focus on consistent progress, no matter how small</p>
               </div>
             </div><!-- End Features Item-->
 
             <div class="features-item d-flex mt-5 ps-0 ps-lg-3" data-aos="fade-up" data-aos-delay="300">
               <i class="bi bi-basket flex-shrink-0"></i>
               <div>
-                <h4>Harum esse qui</h4>
-                <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt</p>
+                <h4>"Transform Your Body, Transform Your Life"</h4>
+                <p>The benefits of fitness go beyond the physical—strengthen your body, mind, and confidence</p>
               </div>
             </div><!-- End Features Item-->
 
             <div class="features-item d-flex mt-5 ps-0 ps-lg-3" data-aos="fade-up" data-aos-delay="400">
               <i class="bi bi-broadcast flex-shrink-0"></i>
               <div>
-                <h4>Aut occaecati</h4>
-                <p>Aut suscipit aut cum nemo deleniti aut omnis. Doloribus ut maiores omnis facere</p>
+                <h4>"Consistency Over Perfection"</h4>
+                <p>The key to success in fitness is showing up. Don’t aim for perfection—just stay consistent</p>
               </div>
             </div><!-- End Features Item-->
 
             <div class="features-item d-flex mt-5 ps-0 ps-lg-3" data-aos="fade-up" data-aos-delay="500">
               <i class="bi bi-camera-reels flex-shrink-0"></i>
               <div>
-                <h4>Beatae veritatis</h4>
-                <p>Expedita veritatis consequuntur nihil tempore laudantium vitae denat pacta</p>
+                <h4>"Strength Begins in the Mind"</h4>
+                <p>Physical fitness starts with mental resilience. Believe in yourself, and your body will follow</p>
               </div>
             </div><!-- End Features Item-->
 
@@ -254,118 +212,6 @@
 
     </section><!-- /Features Section -->
 
-    <!-- Services Section -->
-    <section id="services" class="services section">
-
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Services</h2>
-        <p>Check our Services</p>
-      </div><!-- End Section Title -->
-
-      <div class="container">
-
-        <div class="row gy-4">
-
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-            <div class="service-item position-relative">
-              <div class="icon">
-                <i class="bi bi-activity"></i>
-              </div>
-              <a href="service-details.html" class="stretched-link">
-                <h3>Nesciunt Mete</h3>
-              </a>
-              <p>Provident nihil minus qui consequatur non omnis maiores. Eos accusantium minus dolores iure perferendis tempore et consequatur.</p>
-            </div>
-          </div><!-- End Service Item -->
-
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-            <div class="service-item position-relative">
-              <div class="icon">
-                <i class="bi bi-broadcast"></i>
-              </div>
-              <a href="service-details.html" class="stretched-link">
-                <h3>Eosle Commodi</h3>
-              </a>
-              <p>Ut autem aut autem non a. Sint sint sit facilis nam iusto sint. Libero corrupti neque eum hic non ut nesciunt dolorem.</p>
-            </div>
-          </div><!-- End Service Item -->
-
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-            <div class="service-item position-relative">
-              <div class="icon">
-                <i class="bi bi-easel"></i>
-              </div>
-              <a href="service-details.html" class="stretched-link">
-                <h3>Ledo Markt</h3>
-              </a>
-              <p>Ut excepturi voluptatem nisi sed. Quidem fuga consequatur. Minus ea aut. Vel qui id voluptas adipisci eos earum corrupti.</p>
-            </div>
-          </div><!-- End Service Item -->
-
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
-            <div class="service-item position-relative">
-              <div class="icon">
-                <i class="bi bi-bounding-box-circles"></i>
-              </div>
-              <a href="service-details.html" class="stretched-link">
-                <h3>Asperiores Commodit</h3>
-              </a>
-              <p>Non et temporibus minus omnis sed dolor esse consequatur. Cupiditate sed error ea fuga sit provident adipisci neque.</p>
-              <a href="service-details.html" class="stretched-link"></a>
-            </div>
-          </div><!-- End Service Item -->
-
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
-            <div class="service-item position-relative">
-              <div class="icon">
-                <i class="bi bi-calendar4-week"></i>
-              </div>
-              <a href="service-details.html" class="stretched-link">
-                <h3>Velit Doloremque</h3>
-              </a>
-              <p>Cumque et suscipit saepe. Est maiores autem enim facilis ut aut ipsam corporis aut. Sed animi at autem alias eius labore.</p>
-              <a href="service-details.html" class="stretched-link"></a>
-            </div>
-          </div><!-- End Service Item -->
-
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
-            <div class="service-item position-relative">
-              <div class="icon">
-                <i class="bi bi-chat-square-text"></i>
-              </div>
-              <a href="service-details.html" class="stretched-link">
-                <h3>Dolori Architecto</h3>
-              </a>
-              <p>Hic molestias ea quibusdam eos. Fugiat enim doloremque aut neque non et debitis iure. Corrupti recusandae ducimus enim.</p>
-              <a href="service-details.html" class="stretched-link"></a>
-            </div>
-          </div><!-- End Service Item -->
-
-        </div>
-
-      </div>
-
-    </section><!-- /Services Section -->
-
-    <!-- Call To Action Section -->
-    <section id="call-to-action" class="call-to-action section dark-background">
-
-      <img src="static/assets/img/cta-bg.jpg" alt="">
-
-      <div class="container">
-        <div class="row justify-content-center" data-aos="zoom-in" data-aos-delay="100">
-          <div class="col-xl-10">
-            <div class="text-center">
-              <h3>Call To Action</h3>
-              <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-              <a class="cta-btn" href="#">Call To Action</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </section><!-- /Call To Action Section -->
 
 
     <!-- Contact Section -->
@@ -390,7 +236,7 @@
               <i class="bi bi-geo-alt flex-shrink-0"></i>
               <div>
                 <h3>Address</h3>
-                <p>A108 Adam Street, New York, NY 535022</p>
+                <p>Justin Road,Kaloor,Kochi</p>
               </div>
             </div><!-- End Info Item -->
 
@@ -398,7 +244,7 @@
               <i class="bi bi-telephone flex-shrink-0"></i>
               <div>
                 <h3>Call Us</h3>
-                <p>+1 5589 55488 55</p>
+                <p>+91 98578 00951</p>
               </div>
             </div><!-- End Info Item -->
 
@@ -406,43 +252,13 @@
               <i class="bi bi-envelope flex-shrink-0"></i>
               <div>
                 <h3>Email Us</h3>
-                <p>info@example.com</p>
+                <p>gymfit@example.com</p>
               </div>
             </div><!-- End Info Item -->
 
           </div>
 
-          <div class="col-lg-8">
-            <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
-              <div class="row gy-4">
-
-                <div class="col-md-6">
-                  <input type="text" name="name" class="form-control" placeholder="Your Name" required="">
-                </div>
-
-                <div class="col-md-6 ">
-                  <input type="email" class="form-control" name="email" placeholder="Your Email" required="">
-                </div>
-
-                <div class="col-md-12">
-                  <input type="text" class="form-control" name="subject" placeholder="Subject" required="">
-                </div>
-
-                <div class="col-md-12">
-                  <textarea class="form-control" name="message" rows="6" placeholder="Message" required=""></textarea>
-                </div>
-
-                <div class="col-md-12 text-center">
-                  <div class="loading">Loading</div>
-                  <div class="error-message"></div>
-                  <div class="sent-message">Your message has been sent. Thank you!</div>
-
-                  <button type="submit">Send Message</button>
-                </div>
-
-              </div>
-            </form>
-          </div><!-- End Contact Form -->
+         <!-- End Contact Form -->
 
         </div>
 
@@ -459,53 +275,40 @@
         <div class="row gy-4">
           <div class="col-lg-4 col-md-6 footer-about">
             <a href="index.html" class="logo d-flex align-items-center">
-              <span class="sitename">GP</span>
+              <span class="sitename">GymFIT</span>
             </a>
             <div class="footer-contact pt-3">
-              <p>A108 Adam Street</p>
-              <p>New York, NY 535022</p>
-              <p class="mt-3"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
-              <p><strong>Email:</strong> <span>info@example.com</span></p>
+              <p>Justin Road,Kaloor</p>
+              <p>Kochi</p>
+              <p class="mt-3"><strong>Phone:</strong> <span>+91 98578 00951</span></p>
+              <p><strong>Email:</strong> <span>gymfit@example.com</span></p>
             </div>
             <div class="social-links d-flex mt-4">
               <a href=""><i class="bi bi-twitter-x"></i></a>
               <a href=""><i class="bi bi-facebook"></i></a>
               <a href=""><i class="bi bi-instagram"></i></a>
-              <a href=""><i class="bi bi-linkedin"></i></a>
             </div>
           </div>
 
           <div class="col-lg-2 col-md-3 footer-links">
             <h4>Useful Links</h4>
             <ul>
-              <li><i class="bi bi-chevron-right"></i> <a href="#"> Home</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#"> About us</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#"> Services</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#"> Terms of service</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#"> Privacy policy</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="/"> Home</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="/about"> About us</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="/service"> Services</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="/policy"> Privacy policy</a></li>
             </ul>
           </div>
 
           <div class="col-lg-2 col-md-3 footer-links">
             <h4>Our Services</h4>
             <ul>
-              <li><i class="bi bi-chevron-right"></i> <a href="#"> Web Design</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#"> Web Development</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#"> Product Management</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#"> Marketing</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#"> Graphic Design</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="/service"> Workout</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="/service"> Zumba</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="/service"> Boxing</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="/service"> Calisthenics</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="/service"> Cardio</a></li>
             </ul>
-          </div>
-
-          <div class="col-lg-4 col-md-12 footer-newsletter">
-            <h4>Our Newsletter</h4>
-            <p>Subscribe to our newsletter and receive the latest news about our products and services!</p>
-            <form action="forms/newsletter.php" method="post" class="php-email-form">
-              <div class="newsletter-form"><input type="email" name="email"><input type="submit" value="Subscribe"></div>
-              <div class="loading">Loading</div>
-              <div class="error-message"></div>
-              <div class="sent-message">Your subscription request has been sent. Thank you!</div>
-            </form>
           </div>
 
         </div>
@@ -514,7 +317,7 @@
 
     <div class="copyright">
       <div class="container text-center">
-        <p>© <span>Copyright</span> <strong class="px-1 sitename">GP</strong> <span>All Rights Reserved</span></p>
+        <p>© <span>Copyright</span> <strong class="px-1 sitename">GF</strong> <span>All Rights Reserved</span></p>
         <div class="credits">
           <!-- All the links in the footer should remain intact. -->
           <!-- You can delete the links only if you've purchased the pro version. -->

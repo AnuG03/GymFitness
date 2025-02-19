@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block title %}
+Profile
+{% endblock title %}
+{% block body %}
+
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <h1>Enrollment Details</h1>
+            {% for post in posts %}
+            <div class="card mb-3 border-dark">  <!-- Added Card Layout -->
+                <div class="card-body bg-warning text-dark">
+                    <h5 class="card-title">Name: {{ post.FullName }}</h5>
+                    <p class="card-text"><strong>Email:</strong> {{ post.Email }}</p>
+                    <p class="card-text"><strong>Gender:</strong> {{ post.Gender }}</p>
+                    <p class="card-text"><strong>Phone:</strong> {{ post.PhoneNumber }}</p>
+                    <p class="card-text"><strong>DOB:</strong> {{ post.DOB }}</p>
+                    <p class="card-text"><strong>Membership Plan:</strong> {{ post.SelectMembershipplan }}</p>
+                    <p class="card-text"><strong>Trainer:</strong> {{ post.SelectTrainer }}</p>
+                    <p class="card-text"><strong>Reference:</strong> {{ post.Reference }}</p>
+                    <p class="card-text"><strong>Address:</strong> {{ post.Address }}</p>
+                    <p class="card-text"><strong>Payment Status:</strong> {{ post.paymentStatus }}</p>
+                    <p class="card-text"><strong>Amount Paid:</strong> {{ post.Price }}</p>
+                    <p class="card-text"><strong>Upcoming Due Date:</strong> {{ post.DueDate }}</p>
+                    <p class="card-text"><strong>Joining Date:</strong> {{ post.timeStamp }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="col-md-8">
+            <div><center><h2 class="display-4 mt-3"><b>Attendance Data</b></h2></center></div>
+            <table class="table">
+                <thead class="thead-warning">
+                    <tr>
+                        <th scope="col">Date</th>
+                        <th scope="col">Login</th>
+                        <th scope="col">Logout</th>
+                        <th scope="col">Workout</th>
+                        <th scope="col">Trained By</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for attend in attendance %}
+                    <tr>
+                        <td>{{ attend.Selectdate }}</td>
+                        <td>{{ attend.Login }}</td>
+                        <td>{{ attend.Logout }}</td>
+                        <td>{{ attend.SelectWorkout }}</td>
+                        <td>{{ attend.TrainedBy }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endblock body %}
